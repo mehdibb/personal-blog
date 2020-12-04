@@ -1,10 +1,10 @@
 import React from 'react';
-import Button from 'react-bootstrap/Button';
+import styles from './index.module.scss';
 
 export default function Home(): React.ReactElement {
   return (
-    <Button>
-      Click Me!
-    </Button>
+    <main className={`${styles.main} container d-flex justify-content-center align-items-center`}>
+      <h1>React/Next/Bootstrap</h1>
+    </main>
   );
 }
