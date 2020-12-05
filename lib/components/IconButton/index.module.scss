@@ -1,0 +1,17 @@
+.icon_button {
+  border-radius: 50%;
+  display: flex;
+  width: 42px;
+  height: 42px;
+  align-items: center;
+  background-color: #ffffff;
+  
+  &:not(:last-of-type) {
+    margin-right: 4px;
+  }
+  
+  svg {
+    width: 16px;
+    height: 16px;
+  }
+}

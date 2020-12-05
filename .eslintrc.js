@@ -7,10 +7,22 @@ module.exports = {
   ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
-    project: `./tsconfig.json`
+    project: `./tsconfig.json`,
+    tsconfigRootDir: "./"
   },
+  plugins: [
+    "@typescript-eslint",
+    "import"
+  ],
   rules: {
-    'react/jsx-props-no-spreading': 'off'
+    'react/jsx-props-no-spreading': 'off',
+    'import/prefer-default-export': 'off',
+    'import/no-cycle': 'off',
   },
   ignorePatterns: ['.eslintrc.js'],
+  settings: {
+    "import/resolver": {
+      "typescript": {}
+    }
+  },
 }
