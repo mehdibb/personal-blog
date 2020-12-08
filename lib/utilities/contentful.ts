@@ -1,9 +1,8 @@
 import { createClient, Entry } from 'contentful';
 
-// TODO: remove these hard-coded tokens
 const client = createClient({
-  accessToken: 'OocUly3YBg8K1L1bDTs0LXWzhG0giYozxxdoS0dmX7c',
-  space: 'des3cp1ojg7g',
+  accessToken: process.env.NEXT_PUBLIC_CONTENTFUL_ACCESS_TOKEN,
+  space: process.env.NEXT_PUBLIC_CONTENTFUL_SPACE_TOKEN,
 });
 
 export interface SocialLink {
@@ -24,13 +23,23 @@ export interface Author {
 }
 
 export async function getAuthor(): Promise<Author> {
-  const { items } = await client.getEntries<{
+  const result = await client.getEntries<{
     fullName: string;
+    picture: Entry<{
+      description: string;
+      title: string;
+      file: {
+        url: string;
+      };
+    }>;
     shortDescription: string;
-    picture: Entry<{title: string; description: string; file: {url: string}}>;
     socialLinks: SocialLink[];
-  }>('authorProfile');
-  const author = items[0].fields;
+  }>({
+    content_type: 'authorProfile',
+  });
+
+  const author = result.items[0].fields;
+
   return {
     fullName: author.fullName,
     picture: {

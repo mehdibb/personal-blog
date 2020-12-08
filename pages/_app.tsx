@@ -1,6 +1,6 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import '../styles/global.css';
+import '../styles/global.scss';
 import 'normalize.css';
 import type { AppProps } from 'next/app';
 import {

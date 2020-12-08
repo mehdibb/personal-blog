@@ -18,6 +18,7 @@ module.exports = {
     'react/jsx-props-no-spreading': 'off',
     'import/prefer-default-export': 'off',
     'import/no-cycle': 'off',
+    "no-warning-comments": [1, { "terms": ["todo", "fixme"]}]
   },
   ignorePatterns: ['.eslintrc.js'],
   settings: {

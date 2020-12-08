@@ -5,6 +5,7 @@
 .search_bar {
   border: unset;
   width: calc(100% - 42px);
+  border-radius: unset;
 
   &:focus {
     box-shadow: none;
