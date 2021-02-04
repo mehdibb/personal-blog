@@ -1,11 +1,15 @@
-import { GetStaticPropsResult } from 'next';
-import React from 'react';
+import { GetServerSidePropsResult } from 'next';
+import React, { useCallback, useState } from 'react';
 import {
   Button, Col, Form, Row,
 } from 'react-bootstrap';
-import { getAuthor, Author, iconsMap } from '_/utilities';
+import {
+  getAuthor, Author, iconsMap, updateAuthorField,
+} from '_/utilities';
 import styles from './index.module.scss';
-import { Categories, IconButton, TagsGroup } from '#';
+import {
+  Categories, EditableText, IconButton, TagsGroup,
+} from '#';
 
 interface Props {
   author: Author;
@@ -17,6 +21,17 @@ const latestPosts = [
 ];
 
 export default function Home({ author }: Props): React.ReactElement {
+  const [
+    authorShortDescription,
+    setAuthorShortDescription,
+  ] = useState<string | undefined>(undefined);
+
+  const handleSubmitDescription = useCallback(async (value: string): Promise<void> => {
+    const response = await updateAuthorField('shortDescription', value);
+
+    setAuthorShortDescription(response.fields.shortDescription['en-US']);
+  }, []);
+
   return (
     <>
       <Row>
@@ -42,7 +57,11 @@ export default function Home({ author }: Props): React.ReactElement {
             />
           </Row>
           <Row><h4>About Me</h4></Row>
-          <Row className="mb-3"><p className={styles.author_description}>{author.shortDescription}</p></Row>
+          <Row className="mb-3">
+            <EditableText onSubmit={handleSubmitDescription}>
+              {authorShortDescription == null ? author.shortDescription : authorShortDescription}
+            </EditableText>
+          </Row>
           <Row className="mb-2"><h4>Follow Me</h4></Row>
           <Row className="mb-5">
             {author.socialLinks.map(({ link, title, type }) => (
@@ -109,8 +128,8 @@ export default function Home({ author }: Props): React.ReactElement {
   );
 }
 
-export async function getStaticProps(): Promise<
-GetStaticPropsResult<{author: Author}>
+export async function getServerSideProps(): Promise<
+GetServerSidePropsResult<{author: Author}>
 > {
   const author = await getAuthor();
 

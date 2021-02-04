@@ -66,3 +66,25 @@ button {
   background-color: unset;
   padding: unset;
 }
+
+body::-webkit-scrollbar {
+  width: 12px;
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: rgba(0,0,0,0.4);
+  border-radius: 10rem;
+  border: 1px solid #fff;
+}
+
+body::-webkit-scrollbar-track-piece:start {
+  background: transparent;
+}
+
+body::-webkit-scrollbar-track-piece:end {
+  background: transparent;
+}
+
+html {
+  overflow-y: overlay;
+}

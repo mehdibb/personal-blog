@@ -1,0 +1,60 @@
+@import "../../../node_modules/bootstrap/scss/functions";
+@import "../../../node_modules/bootstrap/scss/variables";
+
+.editable_text {
+  cursor: text;
+  
+  &:hover {
+    border: 1px solid #999;
+    padding: 3px
+  }
+}
+
+.extra_outer_area {
+  padding: 4px;
+  margin-bottom: 0;
+}
+
+.input_buttons_wrapper {
+  position: absolute;
+  top: -4px;
+  right: 0;
+  transform: translateY(-100%);
+  display: flex;
+  opacity: 0.4;
+
+  &:hover {
+    opacity: 1;
+  }
+
+  :first-child svg {
+    fill: green;
+  }
+
+  :first-child:only-child svg, :nth-child(2) svg {
+    fill: red
+  }
+}
+
+.input {
+  background-color: unset;
+  border: unset;
+  font-weight: unset;
+  color: unset;
+  border: 1px solid #999;
+  width: 100%;
+  line-height: unset;
+  overflow: hidden;
+  resize: none;
+  padding: 3px;
+  margin-bottom: -6px;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.input_wrapper {
+  width: 100%;
+  position: relative;
+}
